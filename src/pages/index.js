@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
-import ContentrainData from '../data/contentrain/Data/US.json'
+import ContentrainData from '../../contentrain/Posts/US.JSON'
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -11,10 +11,10 @@ const BlogIndex = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Seo title="All posts" />
 
-      {ContentrainData.Posts.map((data) => {
+      {ContentrainData[0].Posts.map((data) => {
         return <div key={`content_item_${data.ID}`}>
-          <h2>{data.Title}</h2>
-          <div>{data.Description}</div>
+          <h2>{data.title}</h2>
+          <div>{data.description}</div>
         </div>
       })}
 
