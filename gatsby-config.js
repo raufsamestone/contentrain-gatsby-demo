@@ -24,7 +24,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/contentrain`,
+        path: `${__dirname}/src/contentrain`,
       },
     },
     {
