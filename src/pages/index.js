@@ -7,15 +7,14 @@ import Seo from "../components/seo"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="All posts" />
 
-      {ContentrainData.map((data, index) => {
-        return <div key={`content_item_${index}`}>
-          <h2>{data.title}</h2>
-          <div>{data.description}</div>
+      {ContentrainData.Posts.map((data) => {
+        return <div key={`content_item_${data.ID}`}>
+          <h2>{data.Title}</h2>
+          <div>{data.Description}</div>
         </div>
       })}
 
