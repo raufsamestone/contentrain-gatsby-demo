@@ -1,23 +1,24 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
-import Data from '../data/data.json'
+import ContentrainData from '../data/contentrain/Data/US.json'
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
+
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="All posts" />
-      {Data.map(post => {
-        return (
-          <div>
-            <h2>{post.title} </h2>
-            <div>{post.description}</div>
-          </div>
-        )
+
+      {ContentrainData.map((data, index) => {
+        return <div key={`content_item_${index}`}>
+          <h2>{data.title}</h2>
+          <div>{data.description}</div>
+        </div>
       })}
+
     </Layout>
   )
 }
