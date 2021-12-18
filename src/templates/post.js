@@ -38,13 +38,13 @@ const JsonBlogPostTemplate = ({ pageContext, location}) => {
 export default JsonBlogPostTemplate
 
 export const pageQuery = graphql`
-  query JsonBlogPostBySlug($id: String!) {
+  query JsonBlogPostBySlug {
     site {
       siteMetadata {
         title
       }
     }
-    usJson(Posts: { elemMatch: { ID: { eq: $id } } }) {
+    usJson {
       Posts {
         ID
         title
