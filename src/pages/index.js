@@ -1,23 +1,29 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
-import ContentrainData from '../../src/contentrain/Posts/US.json'
-import Bio from "../components/bio"
+import ContentrainData from "../../src/contentrain/Posts/US.json"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Slugify from 'Slugify'
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="All posts" />
-
-      {ContentrainData[0].Posts.map((data) => {
-        return <div key={`content_item_${data.ID}`}>
-          <h2>{data.title}</h2>
-          <div>{data.description}</div>
-        </div>
-      })}
-
+      <>
+        {data.allUsJson.nodes.map(node => (
+          <div>
+            {node.Posts.map(item => (
+              <>
+                <Link to={Slugify(item.title, { remove: undefined, lower: true })  }>
+                  <h2>{item.title}</h2>
+                </Link>
+                <p>{item.description}</p>
+              </>
+            ))}
+          </div>
+        ))}
+      </>
     </Layout>
   )
 }
@@ -31,15 +37,11 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allUsJson {
       nodes {
-        excerpt
-        fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
+        Posts {
           title
+          ID
           description
         }
       }
