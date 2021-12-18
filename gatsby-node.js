@@ -9,6 +9,8 @@ exports.createPages = async function ({ actions, graphql }) {
           Posts {
             title
             description
+            imageURL
+            article
           }
         }
       }
@@ -22,10 +24,12 @@ exports.createPages = async function ({ actions, graphql }) {
       actions.createPage({
         path: slugify(slug, { remove: undefined, lower: true }),
         component: template,
-        context: { 
+        context: {
           slug: slug,
-          title: slug, 
-          description: post.description
+          title: slug,
+          description: post.description,
+          imageURL: post.imageURL,
+          article: post.article,
         },
       })
     })
