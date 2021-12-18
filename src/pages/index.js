@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 import ContentrainData from "../../src/contentrain/Posts/US.json"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import Slugify from 'Slugify'
+import Slugify from 'slugify'
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
